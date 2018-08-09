@@ -49,3 +49,6 @@ These are all the toy examples in tensorpack. They are supposed to be just demos
 | [LSTM-CTC for speech recognition](CTC-TIMIT) | reproduce paper |
 | [char-rnn for fun](Char-RNN) | fun |
 | [LSTM language model on PennTreebank](PennTreebank) | reproduce reference code |
+
+
+ssh xieya@biwirender14 ". /srv/glusterfs/xieya/anaconda2/etc/profile.d/conda.sh; export PATH="/srv/glusterfs/xieya/cuda-9.0/bin${PATH:+:${PATH}}"; export LD_LIBRARY_PATH="/srv/glusterfs/xieya/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"; echo \$PATH; conda activate; cd ~/tensorpack/examples/ResNet/; CUDA_VISIBLE_DEVICES=0 python ./imagenet-resnet.py --data /srv/glusterfs/xieya/data/imagenet_gray_ss -d 18"
