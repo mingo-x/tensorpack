@@ -56,7 +56,7 @@ def get_data(name, batch):
         args.data, name, batch, augmentors)
 
 
-def get_config(model, fake=False):
+def get_config(model, fake=False, start_epoch=1):
     nr_tower = max(get_num_gpu(), 1)
     assert args.batch % nr_tower == 0
     batch = args.batch // nr_tower
@@ -103,7 +103,7 @@ def get_config(model, fake=False):
         callbacks=callbacks,
         steps_per_epoch=100 if args.fake else (426332) // args.batch,
         max_epoch=105,
-	starting_epoch=8,
+        starting_epoch=start_epoch,
     )
 
 
@@ -124,6 +124,7 @@ if __name__ == '__main__':
                         "Pretrained models listed in README were trained with batch=32x8.")
     parser.add_argument('--mode', choices=['resnet', 'preact', 'se'],
                         help='variants of resnet to use', default='resnet')
+    parser.add_argument('--start_epoch', default=1, type=int)
     args = parser.parse_args()
 
     if args.gpu:
@@ -142,7 +143,7 @@ if __name__ == '__main__':
             logger.set_logger_dir(
                 os.path.join('train_log', 'imagenet-{}-d{}-batch{}'.format(args.mode, args.depth, args.batch)))
 
-        config = get_config(model, fake=args.fake)
+        config = get_config(model, fake=args.fake, start_epoch=args.start_epoch)
         if args.load:
             config.session_init = get_model_loader(args.load)
         trainer = SyncMultiGPUTrainerReplicated(max(get_num_gpu(), 1))

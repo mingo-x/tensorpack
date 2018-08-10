@@ -76,6 +76,12 @@ class ILSVRCMeta(object):
             ret = []
             for line in f.readlines():
                 name, cls = line.strip().split()
+
+                # Subsample
+                fname = os.path.join(self.full_dir, name)
+                if not os.path.isfile(fname):
+                    continue
+
                 cls = int(cls)
 
                 if add_label_to_fname:
