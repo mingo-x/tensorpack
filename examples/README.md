@@ -51,4 +51,4 @@ These are all the toy examples in tensorpack. They are supposed to be just demos
 | [LSTM language model on PennTreebank](PennTreebank) | reproduce reference code |
 
 
-ssh xieya@biwirender14 ". /srv/glusterfs/xieya/anaconda2/etc/profile.d/conda.sh; export PATH="/srv/glusterfs/xieya/cuda-9.0/bin${PATH:+:${PATH}}"; export LD_LIBRARY_PATH="/srv/glusterfs/xieya/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"; echo \$PATH; conda activate; cd /srv/glusterfs/xieya/res_true; CUDA_VISIBLE_DEVICES=0 python ~/tensorpack/examples/ResNet/imagenet-resnet.py --data /srv/glusterfs/xieya/data/imagenet_true_ss -d 18"
+ssh xieya@biwirender13 ". /srv/glusterfs/xieya/anaconda2/etc/profile.d/conda.sh; export PATH="/srv/glusterfs/xieya/cuda-9.0/bin${PATH:+:${PATH}}"; export LD_LIBRARY_PATH="/srv/glusterfs/xieya/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"; echo \$PATH; conda activate; cd /srv/glusterfs/xieya/res_color; CUDA_VISIBLE_DEVICES=0 python ~/tensorpack/examples/ResNet/imagenet-resnet.py --data /srv/glusterfs/xieya/data/imagenet_ab_ss -d 18"
