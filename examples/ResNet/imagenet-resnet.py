@@ -76,10 +76,11 @@ def get_config(model, fake=False, start_epoch=1):
         callbacks = [
             ModelSaver(),
             EstimatedTimeLeft(),
-            ScheduledHyperParamSetter(
-                'learning_rate', [
-                    (0, min(START_LR, BASE_LR)), (30, BASE_LR * 1e-1), (60, BASE_LR * 1e-2),
-                    (90, BASE_LR * 1e-3), (100, BASE_LR * 1e-4)]),
+            # ScheduledHyperParamSetter(
+            #     'learning_rate', [
+            #         (0, min(START_LR, BASE_LR)), (30, BASE_LR * 1e-1), (60, BASE_LR * 1e-2),
+            #         (90, BASE_LR * 1e-3), (100, BASE_LR * 1e-4)]),
+            StatMonitorParamSetter('learning_rate', 'val-error-top5', lambda x: x * 0.1, 1e-4, 5),
         ]
         if BASE_LR > START_LR:
             callbacks.append(
